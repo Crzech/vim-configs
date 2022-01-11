@@ -1,0 +1,18 @@
+{
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+        "prettier.disableSuccessMessage": true,
+  "prettier.eslintIntegration": true,
+  "javascript.validate.enable": false,
+  "python.formatting.autopep8Path": "~/.local/bin/autopep8",
+  "languageserver": {
+    "flow": {
+      "command": "/home/cmontufar/code/pinboard/services/adminapp/adminapp/tools/tot/node_modules/.bin/flow",
+      "args": ["lsp"],
+      "filetypes": ["javascript", "javascriptreact"],
+      "initializationOptions": {},
+      "requireRootPattern": true,
+      "settings": {},
+      "rootPatterns": [".flowconfig"]
+    }
+  }
+}
