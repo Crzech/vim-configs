@@ -17,6 +17,8 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader><Right> <C-W><C-L>
 nnoremap <Leader><Left> <C-W><C-H>
+nnoremap <Leader><Up> <C-W><C-K>
+nnoremap <Leader><Down> <C-W><C-J>
 
 " shorter commands
 cnoreabbrev tree NERDTreeToggle
@@ -40,6 +42,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <leader>af  <Plug>(coc-fix-current)
+nnoremap <Leader>. :call CocAction('doHover')<CR>
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+inoremap <silent><expr> <c-@> coc#refresh()
 
 " Remap surround to lowercase s so it does not add an empty space
 xmap s <Plug>VSurround
@@ -85,8 +92,9 @@ nmap <Leader>s <Plug>(easymotion-s2)
 "if &filetype == "javascript" || &filetype == "python"
   "inoremap <c-space> <C-x><C-u>
 "else
-  inoremap <silent><expr> <c-space> coc#refresh()
+"  inoremap <silent><expr> <c-space> coc#refresh()
 "endif
+
 
 
 set splitright
@@ -139,7 +147,7 @@ function! ParensIndent()
 \    (prevChar == "[" && afterChar == "]")
     return "\<CR>\<ESC>O"
   endif
-  
+
   return "\<CR>"
 endfunction
 
@@ -157,7 +165,7 @@ function! ParensSpacing()
 \    (prevChar == "[" && afterChar == "]")
     return "\<space>\<space>\<left>"
   endif
-  
+
   return "\<space>"
 endfunction
 
@@ -176,7 +184,7 @@ function! ParensRemoveSpacing()
 \    (prevChar == "[" && afterChar == "]")
     return "\<bs>\<right>\<bs>"
   endif
-  
+
   if (prevChar == ' ' && afterChar == ' ')
     let prev = col('.') - 2
     let after = col('.') + 1
@@ -190,7 +198,7 @@ function! ParensRemoveSpacing()
       return "\<bs>\<right>\<bs>"
     endif
   endif
-  
+
   return "\<bs>"
 endfunction
 
@@ -221,7 +229,7 @@ inoremap <expr> ` CheckNextQuote(bticks)
 function CheckNextQuote(c)
   let after = col('.')
   let afterChar = matchstr(getline('.'), '\%' . after . 'c.')
-  
+
   if (afterChar == a:c)
     return "\<right>"
   endif
